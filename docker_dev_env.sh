@@ -29,12 +29,6 @@ docker run --rm -d --net dev-network --name pgsql -p 6543:5432 -v ~/projects/doc
 # mount -t nfs -o nolock 192.168.88.234:/nfs ./remote_nfs
 docker run --rm -d --net dev-network --name nfs-server -v ~/projects/docker/nfs/:/nfs -e NFS_EXPORT_DIR_1=/nfs -e NFS_EXPORT_DOMAIN_1=\* -e NFS_EXPORT_OPTIONS_1=rw,insecure,no_subtree_check,no_root_squash,fsid=1 -p 111:111 -p 111:111/udp -p 2049:2049 -p 2049:2049/udp -p 32765:32765 -p 32765:32765/udp -p 32766:32766 -p 32766:32766/udp -p 32767:32767 -p 32767:32767/udp --privileged=true fuzzle/docker-nfs-server:latest
 
-
-# openssl rand -hex 16
-# /home 目录下必须带一个和用户名一样的子目录，否则看不到数据, root 用户已经有了，需要换一个
-# 用户目录是只读的，需要在子目录下面，如果还不可写，执行这个 docker exec sftp sh -c 'chown -R demo /home/demo/'
-docker run --rm -d --name sftp --net dev-network -v ~/projects/docker/sftp/:/home/demo/shared -p 2222:22 atmoz/sftp demo:123456
-
 # openssl rand -hex 16
 # /home/vsftpd 目录下必须带一个和用户名一样的子目录，否则看不到数据
 docker run --rm -d --name ftp --net dev-network -v ~/projects/docker/ftp/:/home/vsftpd/demo -p 20:20 -p 21:21 -p 21100-21110:21100-21110 -e LOCAL_UMASK=022 -e FTP_USER=demo -e FTP_PASS=123456 -e PASV_MIN_PORT=21100 -e PASV_MAX_PORT=21110 -e PASV_ADDRESS=0.0.0.0 -e LOG_STDOUT=1 fauria/vsftpd
