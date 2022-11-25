@@ -35,10 +35,8 @@ docker run --rm -d --name ftp --net dev-network -v ~/projects/docker/ftp/:/home/
 
 docker run --rm -d -it --net dev-network --name=tftpd -p 69:69/udp -v ~/projects/docker/tftp:/srv/tftp hkarhani/tftpd
 
-# -u "mmc;mmc" -s "smb;/mount/;yes;no;no;all;none"
-# -s "smb;/mount/;yes;no;yes;all;none"
 # 共享目录为 \\ip\smb
-docker run --rm -d --net dev-network --name smb -v ~/projects/docker/smb/:/mount -p 139:139 -p 445:445 dperson/samba -s "smb;/mount/;yes;no;yes;all;none"
+docker run --rm -d --net dev-network --name smb -v ~/projects/docker/smb/:/mount -p 139:139 -p 445:445 dperson/samba -u "mmc;123456;1000;mmc;1000" -s "smb;/mount;yes;no;no;mmc" -p
 
 # metasploit
 # alias msf="docker exec -it msf /usr/src/metasploit-framework/msfconsole"
