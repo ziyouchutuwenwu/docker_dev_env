@@ -1,3 +1,5 @@
+#! /usr/bin/env bash
+
 CURRENT_DIR=$(cd `dirname $0`; pwd)
 
 # --user $(id -u):$(id -g)
@@ -27,7 +29,3 @@ docker run --rm -d -it --name=tftpd -p 69:69/udp -v ~/projects/docker/tftp:/srv/
 
 # 共享目录为 \\ip\smb
 docker run --rm -d --name smb -v ~/projects/docker/smb/:/mount -p 139:139 -p 445:445 dperson/samba -u "mmc;123456;1000;mmc;1000" -s "smb;/mount;yes;no;no;mmc"
-
-# metasploit
-# alias msf="docker exec -it msf /usr/src/metasploit-framework/msfconsole"
-docker run --rm -d --net=host --name msf -it --hostname msf -v $HOME/.msf4:/root/.msf4 -v /tmp/msf:/tmp/data metasploitframework/metasploit-framework
