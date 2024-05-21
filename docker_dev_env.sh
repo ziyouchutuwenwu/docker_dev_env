@@ -82,4 +82,4 @@ docker run --rm -d --name smb \
   -p 445:445 \
   dperson/samba \
   -u "mmc;123456;1000;mmc;1000" \
-  -s "smb;/mount;yes;no;no;mmc"
+  -s "smb;/mount;yes;no;no;mmc;mmc"
