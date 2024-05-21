@@ -20,7 +20,6 @@ docker run --rm -d --name nginx \
   -v $CURRENT_DIR"/conf/nginx/conf.d/":/etc/nginx/conf.d/ \
   nginx:alpine
 
-
 docker run --rm -d --name redis -p 6379:6379 redis
 
 docker run --rm -d --name mysql \
