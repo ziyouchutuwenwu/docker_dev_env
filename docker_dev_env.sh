@@ -82,3 +82,9 @@ docker run --rm -d --name smb \
   dperson/samba \
   -u "mmc;123456;1000;mmc;1000" \
   -s "smb;/mount;yes;no;no;mmc;mmc"
+
+
+# docker exec -it msf /usr/src/metasploit-framework/msfconsole
+docker run --rm -d --name msf \
+  --net=host -it \
+  metasploitframework/metasploit-framework
