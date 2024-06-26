@@ -41,7 +41,7 @@ docker run --rm -d --name pgsql \
 # debian 客户端需要安装 nfs-common
 # mount -v -t nfs -o nolock 192.168.56.1:/mnt/nfs ./nfs
 docker run --rm -d --name nfs \
-  -v /~/projects/docker/nfs/:/mnt/nfs \
+  -v ~/projects/docker/nfs/:/mnt/nfs \
   -e NFS_EXPORT_DIR_1=/mnt/nfs \
   -e NFS_EXPORT_DOMAIN_1=\* \
   -e NFS_EXPORT_OPTIONS_1=rw,insecure,no_subtree_check,all_squash,fsid=1 \
